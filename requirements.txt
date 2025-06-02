@@ -1,0 +1,8 @@
+nltk
+scikit-learn
+matplotlib
+rank_bm25
+requests
+urllib3
+wikipedia
+seaborn

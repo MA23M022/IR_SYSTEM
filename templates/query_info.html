@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Name</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 100px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ message }}</h1>  
+
+    <div class="container">
+        <h2>Enter Your Query</h2>
+        <form action="{{ url_for('query_submit', message = message) }}" method="POST">
+            <label for="query">Query:</label>
+            <input type="text" id="query" name="query" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -210,14 +210,15 @@ class SearchEngine:
 		"""
 
 		#Get query
-		print("Enter query below")
-		query = input("User :")
+		query = self.custom_query
+		print(f"Enter query below {query}")
+		
 		corrected_query = autoCompletion_function(query)
 		# Process documents
 		processedQuery = self.preprocessQueries([corrected_query])[0]
 
 		# Read documents
-		docs_json = json.load(open(args.dataset + "cran_docs.json", 'r'))[:]
+		docs_json = json.load(open(self.args.dataset + "cran_docs.json", 'r'))[:]
 		doc_ids, docs = [item["id"] for item in docs_json], \
 							[item["body"] for item in docs_json]
 		# Process documents
@@ -228,7 +229,11 @@ class SearchEngine:
 		# Rank the documents for the query
 		doc_IDs_ordered = self.informationRetriever.rank([processedQuery])[0]
 
-		return doc_IDs_ordered
+		original_corrected_query = "Original Query : " + query + ", Corrected query : " + corrected_query
+		return original_corrected_query, doc_IDs_ordered
+	
+	def set_custom_query(self, query):
+		self.custom_query = query
 
 
 
@@ -260,7 +265,7 @@ if __name__ == "__main__":
 	# Either handle query from user or evaluate on the complete dataset 
 	Doc_IDS = []
 	if args.custom:
-		Doc_IDS = searchEngine.handleCustomQuery()
+		corrected_query, Doc_IDS = searchEngine.handleCustomQuery()
 		# Print the IDs of first five documents
 		print("\nTop five document IDs : ")
 		for id_ in Doc_IDS[:5]:

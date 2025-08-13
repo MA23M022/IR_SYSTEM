@@ -1,1 +1,1 @@
-[[["effect", "cross", "section", "shape", "flow", "simpl", "delta", "wing", "sharp", "lead", "edg"]]]
+[[["paper", "avail", "buckl", "empti", "cylindr", "shell", "non-uniform", "pressur"]]]
